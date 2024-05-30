@@ -12,7 +12,7 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
   if (err) throw err;
-  console.log("Connected to DB!");
+  console.log("Connected to DB in Auth!");
 });
 
 router.use(function (req, res, next) {
@@ -33,7 +33,7 @@ router.post("/register", function (req, res) {
       return;
     }
     console.log("User registered");
-    res.json({ response: regidata });
+    res.status(201).json({ response: regidata });
   });
 });
 
@@ -44,7 +44,7 @@ router.post("/log-in", function (req, res) {
   // Check if email and password are provided
   if (logemail && logpassword) {
     con.query(
-      "SELECT * FROM users WHERE email = ? AND password = ?",[logemail, logpassword],function (error, results, fields) {
+      "SELECT * FROM users WHERE email = ? AND password = ?",[logemail, logpassword],function (results) {
         console.log(logemail);
 
         if (results.length >0) {
