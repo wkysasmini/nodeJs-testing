@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const secret = "your-secret-key";
 
 exports.register = function (req, res) {
-    let { name,email, password } = req.body;
+    let { name, email, password } = req.body;
     userService.registerUser(name, email, password, function (err, result) {
         if (err) {
             return res.status(500).json({ error: err });

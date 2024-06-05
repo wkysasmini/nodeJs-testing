@@ -1,7 +1,7 @@
 const db = require('./db');
 
-exports.registerUser = (name,email, password, callback) => {
-    const sql = "INSERT INTO users (name,email, password) VALUES (?, ?, ?)";
+exports.registerUser = (name, email, password, callback) => {
+    const sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
     db.query(sql, [name, email, password], callback);
 };
 
