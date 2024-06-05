@@ -7,10 +7,5 @@ router.get('/', function(req, res, next) {
  res.json({"response":"this is home page"});
 });
 
-/* GET home page. */
-router.get('/s', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  res.json({"response":"this is home page s"});
- });
 
 module.exports = router;

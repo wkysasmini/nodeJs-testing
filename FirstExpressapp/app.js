@@ -30,16 +30,29 @@ con.connect(function (err) {
       if (err) throw err;
       console.log("Using database 'testdb'");
 
-      var users ="CREATE TABLE IF NOT EXISTS users (id INT(11) AUTO_INCREMENT PRIMARY KEY,email VARCHAR(255), password VARCHAR(255))";
-      con.query(users, function (err, result) {
+      var usersTable = `
+        CREATE TABLE IF NOT EXISTS users (
+          id INT(11) AUTO_INCREMENT PRIMARY KEY,
+          email VARCHAR(255),
+          password VARCHAR(255)
+        )`;
+      con.query(usersTable, function (err) {
         if (err) throw err;
         console.log("Table 'users' created or already exists");
+      });
 
-        var posts ="CREATE TABLE IF NOT EXISTS posts (id INT(11) AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, description LONGTEXT, image TEXT)";
-        con.query(posts, function (err, result) {
-          if (err) throw err;
-          console.log("Table 'posts' created or already exists");
-        });
+      var postsTable = `
+        CREATE TABLE IF NOT EXISTS posts (
+          id INT(11) AUTO_INCREMENT PRIMARY KEY,
+          title VARCHAR(255),
+          created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+          description LONGTEXT,
+          image TEXT
+        )`;
+      con.query(postsTable, function (err) {
+        if (err) throw err;
+        console.log("Table 'posts' created or already exists");
       });
     });
   });
