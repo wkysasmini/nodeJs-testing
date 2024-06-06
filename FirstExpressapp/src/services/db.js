@@ -4,7 +4,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  //database: "testdb",
+  //database: "testdb"
 });
 
 connection.connect(function (err) {
@@ -19,7 +19,7 @@ connection.connect(function (err) {
       if (err) throw err;
       console.log("Using database 'testdb'");
 
-      const createUsersTable = `CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY,email VARCHAR(255) NOT NULL,password VARCHAR(255) NOT NULL)`;
+      const createUsersTable = `CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255), email VARCHAR(255) NOT NULL,password VARCHAR(255) NOT NULL)`;
       connection.query(createUsersTable, function (err) {
         if (err) throw err;
         console.log("Table 'users' created or already exists");

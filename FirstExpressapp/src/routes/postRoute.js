@@ -115,7 +115,7 @@ var router = express.Router();
 var postController = require("../controllers/postController");
 
 router.post("/post-create", postController.createPost);
-router.post("/post-read/:id", postController.readPost);
+router.get("/post-read/:id", postController.readPost);
 router.post("/post-update/:id", postController.updatePost);
 router.post("/post-delete/:id", postController.deletePost);
 
